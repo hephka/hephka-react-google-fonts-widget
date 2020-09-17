@@ -5,7 +5,7 @@ import FormRange from "./forms/FormRange";
 const Form = () => {
   return (
     <div className="col-lg-3">
-      <div style={{position: "sticky", top: "0px"}}>
+      <div style={{ position: "sticky", top: "0px" }}>
         <FormText />
         <FormRange />
       </div>
