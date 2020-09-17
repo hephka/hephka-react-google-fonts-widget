@@ -1,9 +1,27 @@
-import React from "react";
-import Article from './Article'
+import React, {useState, useEffect} from "react";
 
-const RecentFonts = (props) => { 
+const RecentFonts = () => { 
 
-  const { name, variants, link, category } = props
+  const [recentFonts, setRecentFonts] = useState([]);
+
+  useEffect(() => {
+    const API_KEY = process.env.REACT_APP_GOOGLE_FONTS_API_KEY;
+    const url = `https://www.googleapis.com/webfonts/v1/webfonts?key=${API_KEY}&sort=date`;
+
+    fetch(url)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("police introuvable");
+      })
+      .then((data) => {
+        setRecentFonts(data.items.slice(0, 10));
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, []);
 
   return (
     <section className="row mb-5">
@@ -11,7 +29,30 @@ const RecentFonts = (props) => {
       <h2 className="mb-3">
         <span className="badge bg-danger">Les plus récentes</span>
       </h2>
-      <Article name={name} variants={variants} link={link} category={category} />
+      {recentFonts.map((el) => {
+        return (
+          <article className="col-lg-6 mb-3">
+          <div className="shadow p-3">
+            <h2 className="h6 d-flex align-items-center justify-content-between">
+              <span>{el.family}</span>
+              <small>{el.variants.length} variant(s)</small>
+            </h2>
+            <p>
+              <span className="badge bg-dark">{el.category}</span>
+            </p>
+            <p className="sample" /* AJOUTER STYLE */>(appel du textarea)</p>
+            <a
+              rel="noopener noreferrer"
+              target="_blank"
+              className="text-danger"
+              href={`https://fonts.google.com/specimen/${el.family}`}
+            >
+              Voir sur Google Fonts (ouvre un nouveau tab)
+            </a>
+          </div>
+        </article>
+        )
+      })}
     </section>
   );
 };
