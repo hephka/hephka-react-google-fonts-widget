@@ -1,6 +1,13 @@
 import React from "react";
 
-const FormText = () => {
+const FormText = (props) => {
+
+  const {text, setText} = props
+  
+  const handleTextChange = (event) => {
+    setText(event.target.value)
+  }
+
   return (
     <div className="mb-3">
       <label htmlFor="text" className="form-label font-weight-bold mb-3">
@@ -8,10 +15,10 @@ const FormText = () => {
       </label>
       <textarea
         id="text"
+        value={text}
         className="form-control"
-        style={{marginTop: "0px", marginBottom: "0px", height: "62px"}}
+        onChange={handleTextChange}
       >
-        Portez ce vieux whisky au juge blond qui fume !? 0123456789
       </textarea>
     </div>
   );

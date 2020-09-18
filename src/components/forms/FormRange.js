@@ -1,6 +1,13 @@
 import React from "react";
 
-const FormRange = () => {
+const FormRange = (props) => {
+
+  const {size, setSize} = props
+
+  const handleRangeChange = (event) => {
+    setSize(event.target.value)
+  }
+
   return (
     <>
       <label htmlFor="range" className="form-label font-weight-bold mb-3">
@@ -8,12 +15,13 @@ const FormRange = () => {
       </label>
       <input
         type="range"
+        value={size}
         className="form-range"
         id="range"
         min="8"
         max="48"
         step="1"
-        value="20"
+        onChange={handleRangeChange}
       />
     </>
   );
