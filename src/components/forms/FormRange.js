@@ -1,12 +1,11 @@
 import React from "react";
 
 const FormRange = (props) => {
-
-  const {size, setSize} = props
+  const { size, setSize } = props;
 
   const handleRangeChange = (event) => {
-    setSize(event.target.value)
-  }
+    setSize(event.target.value);
+  };
 
   return (
     <>

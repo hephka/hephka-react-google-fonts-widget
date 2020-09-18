@@ -1,12 +1,11 @@
 import React from "react";
 
 const FormText = (props) => {
+  const { text, setText } = props;
 
-  const {text, setText} = props
-  
   const handleTextChange = (event) => {
-    setText(event.target.value)
-  }
+    setText(event.target.value);
+  };
 
   return (
     <div className="mb-3">
@@ -18,8 +17,7 @@ const FormText = (props) => {
         value={text}
         className="form-control"
         onChange={handleTextChange}
-      >
-      </textarea>
+      ></textarea>
     </div>
   );
 };

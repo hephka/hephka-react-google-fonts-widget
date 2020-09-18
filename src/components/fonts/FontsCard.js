@@ -23,7 +23,10 @@ const FontCard = (props) => {
           rel="noopener noreferrer"
           target="_blank"
           className="text-danger"
-          href={`https://fonts.google.com/specimen/${family.replace(/ /g, "+")}`}
+          href={`https://fonts.google.com/specimen/${family.replace(
+            / /g,
+            "+"
+          )}`}
         >
           Voir sur Google Fonts (ouvre un nouveau tab)
         </a>
